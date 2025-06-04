@@ -9,7 +9,7 @@ There several frameworks available with Python for Web Applications. Popular fra
 
 By default Application runs on Port 5000 and to run it need use command   flask --app app.py run. 
 To aviod that and use python for running the application used below to customized the port  as per below document 
-https://learn.microsoft.com/en-us/visualstudio/ide/quickstart-python?view=vs-2022
+https://learn.microsoft.com/en-us/visualstudio/ide/quickstart-python?view=vs-2022 
 
 **Containerize Web Application**
 This Section Describe Containerization related approach
@@ -31,3 +31,15 @@ To view Current Version of dependencies in my machine used below commands
 
 1. Flask Version: flask --version
 2. Pytz Version: pip3 show pytz
+
+__Problem Occured During Containerization___
+
+Intiailly Exposed app like this 
+if __name__ == "__main__":
+    app.run('127.0.0.1', 8181)
+
+However when running can't access the app externally. To avoid that added like this 
+if __name__ == "__main__":
+    app.run('0.0.0.0', 8181)
+SO app will listen on all ports. So that We can access externally with docker 
+docker run -p 8180:8181 myapp:v2

@@ -42,5 +42,6 @@ def not_found(error):
 
 #https://learn.microsoft.com/en-us/visualstudio/ide/quickstart-python?view=vs-2022
 # By Default app will run in flask webserver with port 5000. To use Customized port which is need for containerization added below to change the port
+# After that able run using pyton3 command instead of flask --app app.py 
 if __name__ == "__main__":
-    app.run('127.0.0.1', 8080)
+    app.run('0.0.0.0', 8181)

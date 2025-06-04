@@ -12,6 +12,9 @@ ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
+# Copy the source code into the container.
+COPY . . 
+
 
 ARG UID=10001
 RUN adduser \
@@ -23,17 +26,17 @@ RUN adduser \
     --uid "${UID}" \
     appuser
 
+# Installing Dependenices
 RUN pip3 install -r requirements.txt 
+
 
 
 # Switch to the non-privileged user to run the application.
 USER appuser
 
-# Copy the source code into the container.
-COPY . . 
 
 # Expose the port that the application listens on.
-EXPOSE 80
+EXPOSE 8181
 
 # RUN The Application 
-CMD flask run
+CMD python3 app.py
