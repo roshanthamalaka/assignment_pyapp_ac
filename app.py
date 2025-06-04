@@ -2,7 +2,7 @@
 from flask import Flask,render_template
 from datetime import datetime
 import pytz
-from prometheus_client import Counter
+from prometheus_client import Counter,generate_latest,CONTENT_TYPE_LATEST
 
 
 app = Flask(__name__)
@@ -46,6 +46,12 @@ def timePage():
 @app.errorhandler(404)
 def not_found(error):
     return render_template('error.html'), 404
+
+#Return Prometheus Metrics
+# https://betterstack.com/community/guides/monitoring/prometheus-python-metrics/#step-1-setting-up-the-demo-project
+@app.route('/metrics')
+def metrics():
+    return generate_latest(), 200, {'Content-Type': CONTENT_TYPE_LATEST}
 
 #https://learn.microsoft.com/en-us/visualstudio/ide/quickstart-python?view=vs-2022
 # By Default app will run in flask webserver with port 5000. To use Customized port which is need for containerization added below to change the port

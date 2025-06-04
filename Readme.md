@@ -67,3 +67,7 @@ In here under instrumenting section we can see that it provides Four metrics nam
 Since need to count the request We use counter instrument in our code 
 
 According to it We have to specify counter and as per the syntax we can increment by one or specific value.
+
+Refer below document for publish metrics 
+
+https://betterstack.com/community/guides/monitoring/prometheus-python-metrics/#step-3-instrumenting-a-counter-metric
