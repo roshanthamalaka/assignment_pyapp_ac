@@ -21,4 +21,4 @@ According Kubernete Docs if the Environemt Supports Cloud Load Balancer it provi
 https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/ 
 Modified the Service from NodePort to LoadBalancer therefore 
 
-After that IT has assigned external IP and Able to Access from static Public IP 
+After that IT has assigned external IP and Able to Access from static Public IP.
