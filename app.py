@@ -5,11 +5,14 @@ import pytz
 
 app = Flask(__name__)
 
+
 # When App loads it shows Welcome to App Screen
 # Use route() decorator to tell Flask what URL should trigger our function.
 @app.route("/")
 def defaultpage():
     return "Welcome to My App"
+
+
 
 # To show the Gandalf image had to use Rendering Template in Flask 
 # Documentation https://flask.palletsprojects.com/en/stable/quickstart/#rendering-templates 
@@ -36,3 +39,9 @@ def timePage():
 @app.errorhandler(404)
 def not_found(error):
     return render_template('error.html'), 404
+
+#https://learn.microsoft.com/en-us/visualstudio/ide/quickstart-python?view=vs-2022
+# By Default app will run in flask webserver with port 5000. To use Customized port which is need for containerization added below to change the port
+# After that able run using pyton3 command instead of flask --app app.py 
+if __name__ == "__main__":
+    app.run('0.0.0.0', 8181)
