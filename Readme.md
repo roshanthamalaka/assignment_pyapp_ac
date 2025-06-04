@@ -68,6 +68,24 @@ Since need to count the request We use counter instrument in our code
 
 According to it We have to specify counter and as per the syntax we can increment by one or specific value.
 
-Refer below document for publish metrics 
+<ins>Refer below document for publish metrics</ins>
 
 https://betterstack.com/community/guides/monitoring/prometheus-python-metrics/#step-3-instrumenting-a-counter-metric
+
+Added Code Block Below 
+
+@app.route('/metrics')
+def metrics():
+    """ Exposes application metrics in a Prometheus-compatible format. """
+    return generate_latest(), 200, {'Content-Type': CONTENT_TYPE_LATEST}
+
+This Publish Almost All the metrics. We only need specific only. In the Above document there is a section how to public specific metrics
+We have to create custom registry. Below Section document.
+https://betterstack.com/community/guides/monitoring/prometheus-python-metrics/#step-1-setting-up-the-demo-project:~:text=If%20you%20want%20to%20disable%20these%20and%20expose%20only%20specific%20metrics%2C%20you%20need%20to%20create%20a%20custom%20registry%3A 
+
+So We have added counter metrics to registry as below 
+
+counter_gdlf = Counter("Gandalf_total_requests","Total Number of Request to /gandalf uri",registry=registry,)
+counter_clmb = Counter("Colombo_total_requests","Total Number of Request to /colombo uri
+
+Then it exported only those two metrics

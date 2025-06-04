@@ -2,14 +2,20 @@
 from flask import Flask,render_template
 from datetime import datetime
 import pytz
-from prometheus_client import Counter,generate_latest,CONTENT_TYPE_LATEST
+import os
+from prometheus_client import Counter,generate_latest,CONTENT_TYPE_LATEST,CollectorRegistry
 
 
 app = Flask(__name__)
 
-## Counters For Prometheus to export
-counter_gdlf = Counter('gandalf_total_requests','Total Number of Request to gandalf uri')
-counter_clmb = Counter('clmb_total_requests','Total Number of Request to colombo uri')
+# Create Custom Registry for Publish Specific 
+registry = CollectorRegistry()
+
+
+## Counters Metrics For Prometheus to export
+# Library will _total to end so it will in the Prometheus as 
+counter_gdlf = Counter("Gandalf_total_requests","Total Number of Request to /gandalf uri",registry=registry,)
+counter_clmb = Counter("Colombo_total_requests","Total Number of Request to /colombo uri",registry=registry,) 
 
 # When App loads it shows Welcome to App Screen
 # Use route() decorator to tell Flask what URL should trigger our function.
@@ -51,7 +57,7 @@ def not_found(error):
 # https://betterstack.com/community/guides/monitoring/prometheus-python-metrics/#step-1-setting-up-the-demo-project
 @app.route('/metrics')
 def metrics():
-    return generate_latest(), 200, {'Content-Type': CONTENT_TYPE_LATEST}
+    return generate_latest(registry), 200, {'Content-Type': CONTENT_TYPE_LATEST}
 
 #https://learn.microsoft.com/en-us/visualstudio/ide/quickstart-python?view=vs-2022
 # By Default app will run in flask webserver with port 5000. To use Customized port which is need for containerization added below to change the port
