@@ -2,7 +2,6 @@
 from flask import Flask,render_template
 from datetime import datetime
 import pytz
-import os
 from prometheus_client import Counter,generate_latest,CONTENT_TYPE_LATEST,CollectorRegistry
 
 
