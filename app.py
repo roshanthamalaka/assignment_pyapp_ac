@@ -2,9 +2,14 @@
 from flask import Flask,render_template
 from datetime import datetime
 import pytz
+from prometheus_client import Counter
+
 
 app = Flask(__name__)
 
+## Counters For Prometheus to export
+counter_gdlf = Counter('gandalf_total_requests','Total Number of Request to gandalf uri')
+counter_clmb = Counter('clmb_total_requests','Total Number of Request to colombo uri')
 
 # When App loads it shows Welcome to App Screen
 # Use route() decorator to tell Flask what URL should trigger our function.
@@ -19,6 +24,7 @@ def defaultpage():
 # Need to create templates folder under that need to create an html file shows the image. 
 @app.route("/gandalf")
 def gandalfpage():
+ counter_gdlf.inc() # Increment Counter of gandalf by one. Syntax from document
  return  render_template('gandalf.html')
 
 # To print time we have to use datetime module and its function now
@@ -32,7 +38,8 @@ def timePage():
     IST = pytz.timezone('Asia/Colombo')
     colombo_datetime = datetime.now(IST) # This will return time in Full format  2025-06-03 21:36:48.742131+05:30
     time_now = colombo_datetime.strftime("%H:%M:%S") # Since Need only Current as per the requirment, So format the using strftime function
-    print ("Colombo Time is ",time_now) # Added as Debugging step to see the time as inted format 
+    print ("Colombo Time is ",time_now) # Added as Debugging step to see the time as inted format
+    counter_clmb.inc()  # Increment Counter Colombo by one
     return "Colombo Time when the Request Made: "+ time_now
 
 # Error Handling with Error message
