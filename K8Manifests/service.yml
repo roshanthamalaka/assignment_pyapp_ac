@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: adcashs
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
      name: adcash
   ports:
