@@ -6,6 +6,7 @@
 
 **/.DS_Store
 **/__pycache__
+**/K8Manifests
 **/.venv
 **/.classpath
 **/.dockerignore

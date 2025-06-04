@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: adcash
+  labels:
+    name: adcash
+spec:
+  containers:
+  - name: adcash
+    image: roshanthamalaka/roshanassignemt_ac:v1 # This Image is Available in Docker Hub Public Repository 
+    imagePullPolicy: IfNotPresent
