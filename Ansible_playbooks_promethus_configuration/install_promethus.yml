@@ -9,13 +9,13 @@
 
       - name: Download the Latest Promethus (3.4.1)
         ansible.builtin.get_url:
-          url: https://github.com/prometheus/prometheus/releases/download/v3.4.1/prometheus-3.4.1.linux-amd64.tar.gz
+          url: https://github.com/prometheus/prometheus/releases/download/v3.4.1/prometheus-3.4.1.linux-amd64.tar.gz   # Choose The Correct File According to the CPU Architecture. Otherwise Service won't work
           dest: /home/roshan
 
-      - name: Extract the Content in the Same Directory and Move The Binaries to bin directory
+      - name: Extract the Content in the Same Directory and Move The Binaries to bin directory # Use Shell Module Becuase Has to done Multiple things. There is no package manager way to install this
         ansible.builtin.shell: |
-            tar xzvf /home/roshan/prometheus-3.4.1.linux-arm64.tar.gz
-            cd /home/roshan/prometheus-3.4.1.linux-arm64
+            tar xzvf /home/roshan/prometheus-3.4.1.linux-amd64.tar.gz
+            cd /home/roshan/prometheus-3.4.1.linux-amd64
             mkdir -p /usr/local/bin/prometheus/
             mv  prometheus prometheus.yml  /usr/local/bin/prometheus/
 
