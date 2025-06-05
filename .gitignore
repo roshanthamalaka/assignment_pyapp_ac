@@ -10,3 +10,14 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+
+#Terraform Components 
+**.terraform.tfstate
+
+# Ignore local Terraform directory
+**/.terraform/
+
+# Ignore Terraform state files
+*.tfstate
+*.tfstate.*
+

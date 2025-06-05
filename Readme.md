@@ -89,3 +89,7 @@ counter_gdlf = Counter("Gandalf_total_requests","Total Number of Request to /gan
 counter_clmb = Counter("Colombo_total_requests","Total Number of Request to /colombo uri
 
 Then it exported only those two metrics
+
+**Prometheus Server Setup** 
+
+Installation : https://prometheus.io/docs/introduction/first_steps/ 
