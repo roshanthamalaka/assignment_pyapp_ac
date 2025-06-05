@@ -13,8 +13,8 @@ registry = CollectorRegistry()
 
 ## Counters Metrics For Prometheus to export
 # Library will _total to end so it will in the Prometheus as 
-counter_gdlf = Counter("Gandalf_total_requests","Total Number of Request to /gandalf uri",registry=registry,)
-counter_clmb = Counter("Colombo_total_requests","Total Number of Request to /colombo uri",registry=registry,) 
+counter_gdlf = Counter("Gandalf_requests","Total Number of Request to /gandalf uri",registry=registry,) # metric Name will be Gandalf_requests_total because adding prefix
+counter_clmb = Counter("Colombo_requests","Total Number of Request to /colombo uri",registry=registry,) 
 
 # When App loads it shows Welcome to App Screen
 # Use route() decorator to tell Flask what URL should trigger our function.
