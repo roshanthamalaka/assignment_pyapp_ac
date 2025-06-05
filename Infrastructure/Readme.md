@@ -1,0 +1,1 @@
+This Folder Contains terraform codes used to provision the Kubernetes Cluster and the Virtual Machine to install a promethus server
