@@ -9,6 +9,12 @@ resource "azurerm_kubernetes_cluster" "aks_cluster" {
     name       = "default"
     node_count = 1
     vm_size    = "Standard_A2_v2"
+    upgrade_settings {
+      drain_timeout_in_minutes      = 0
+      max_surge                     = "10%"
+      node_soak_duration_in_minutes = 0
+    }
+
   }
 
   identity {
@@ -16,15 +22,15 @@ resource "azurerm_kubernetes_cluster" "aks_cluster" {
   }
 
   role_based_access_control_enabled = true
-  sku_tier = "Free" 
+  sku_tier                          = "Free"
 
   node_os_upgrade_channel = "None"
 
   network_profile {
-        network_plugin = "azure"
-        network_policy = "azure"
+    network_plugin = "azure"
+    network_policy = "azure"
   }
   azure_policy_enabled = false
 
-    depends_on = [ azurerm_resource_group.devops_project ]
+  depends_on = [azurerm_resource_group.devops_project]
 }
