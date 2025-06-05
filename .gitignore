@@ -20,4 +20,4 @@ venv.bak/
 # Ignore Terraform state files
 *.tfstate
 *.tfstate.*
-
+*.lock.hcl
