@@ -33,6 +33,23 @@ resource "azurerm_network_security_rule" "rule1_inbound" {
   depends_on                  = [azurerm_network_security_group.nsg_provmnic]
 }
 
+resource "azurerm_network_security_rule" "rule2_inbound" {
+  name                        = "Allow_promethus_traffic_9090"
+  priority                    = 300
+  direction                   = "Inbound"
+  access                      = "Allow"
+  protocol                    = "*"
+  source_port_range           = "*"
+  destination_port_range      = "9090"
+  source_address_prefix       = "*"
+  destination_address_prefix  = "*"
+  resource_group_name         = azurerm_resource_group.devops_project.name
+  network_security_group_name = azurerm_network_security_group.nsg_provmnic.name
+  depends_on                  = [azurerm_network_security_group.nsg_provmnic]
+}
+
+
+
 # Allow All Outbound Traffic
 resource "azurerm_network_security_rule" "rule1_outbound" {
   name                        = "Allow_outbound"
