@@ -22,3 +22,9 @@ https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load
 Modified the Service from NodePort to LoadBalancer therefore 
 
 After that IT has assigned external IP and Able to Access from static Public IP.
+
+__App Deployment__
+
+For the Deployment of the App use Deployments. Then Expose it through the Load Balancer service.
+
+Deployment and service available in the app_deployment.yml file.

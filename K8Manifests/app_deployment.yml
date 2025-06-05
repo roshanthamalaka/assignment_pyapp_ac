@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pywebapp
+  labels:
+    app: pywebapp
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: pywebapp
+  template:
+    metadata:
+      labels:
+        app: pywebapp
+    spec:
+      containers:
+      - name: pywebapp
+        image: roshanthamalaka/roshanassignemt_ac:v1 # This Image is Available in Docker Hub Public Repository 
+--- # Deploy Service to expose the Deployment
+apiVersion: v1
+kind: Service
+metadata:
+  name: pywebappsvc
+spec:
+  type: LoadBalancer
+  selector:
+     app: pywebapp
+  ports:
+    - port: 80 # Port that the Application Will be exposed
+      targetPort: 8181  # Port Application Listen 
