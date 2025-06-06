@@ -1,0 +1,23 @@
+---
+- name: Configure Prometheus to Scrap Metircs
+  hosts: vm
+  vars: 
+      static_IP: 4.145.120.208 # IP of the Application 
+  tasks: 
+      - name: Change Host Name for the VM 
+        ansible.builtin.hostname:
+            name: prometheusnode
+
+      - name: Change the Prometheus Configuration File with new Content 
+        ansible.builtin.template:
+          src: prometheus.yml.j2 # Use relative path because file is in the same location
+          dest:  /usr/local/bin/prometheus/prometheus.yml
+          owner: root
+          group: root
+          mode: 0644
+        
+      - name: Reload Prometheus Service
+        ansible.builtin.service:
+           name: prometheus
+           state: restarted
+           

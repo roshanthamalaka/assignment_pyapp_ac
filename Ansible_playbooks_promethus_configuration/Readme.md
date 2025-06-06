@@ -4,3 +4,6 @@ https://www.linode.com/docs/guides/how-to-install-prometheus-and-grafana-on-ubun
 
 Configure Prometheus as Service 
 https://sbcode.net/prometheus/prometheus-service/ 
+
+Configure Prometheus to Scrap Metrics from a target
+https://prometheus.io/docs/prometheus/latest/getting_started/
