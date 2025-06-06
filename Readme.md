@@ -33,7 +33,7 @@ To use custom port and listen on all addresses (0.0.0.0) added below code block 
 
     Documentation:  https://learn.microsoft.com/en-us/visualstudio/ide/quickstart-python?view=vs-2022  
 
-By adding this applications was exposed on custom port and able to run without Flask. (Issue python3)
+By adding this applications was exposed on custom port and able to run without Flask. (Use python3 to run the application)
 
 In the app.py it has commnents about each function usage for more informational purpose.
 
