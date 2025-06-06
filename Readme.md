@@ -34,3 +34,42 @@ To use custom port and listen on all address (0.0.0.0) added below code block  a
 Documentation:  https://learn.microsoft.com/en-us/visualstudio/ide/quickstart-python?view=vs-2022  
 
 By adding this applications was exposed on custom port and able to run without flaks. (Issue python3)
+
+In the app.py it has commnents about each function usage for more informational purpose.
+
+## Containerizing the Application 
+
+Basic functionality of Applications as follows 
+
+1. When Access application on the Colombo URL it shows the Colombo Time 
+2. When Access gandalf URL it shows the image 
+3. When Application Loads Gives an weclome message 
+4. Access other URL gives error message of invalid path 
+
+Once the logic has written for the above, we have containerized the application. 
+
+Followed Below Documentations  which is specific to Python
+https://docs.docker.com/guides/python/develop/ 
+https://docs.docker.com/guides/python/containerize/
+
+I used manually create assests method. I get the Example Docker file from above and modified with respective to my need.
+
+When it comes to containerization need to specify dependencies in the requirements.txt file. In here specified packages which same as the version in local machine. So when the content is copied to the docker image and it starts installing the version same as my local machine. 
+
+In Docker File below section install the dependencies.
+    # Installing Dependenices
+    RUN pip3 install -r requirements.txt 
+
+To view Current Version of dependencies in my machine used below commands
+
+    1. Flask Version: flask --version
+    2. Pytz Version: pip3 show pytz
+
+___Build the Docker Image__
+
+To Build the image use the below command.
+        docker build -t roshanthamalaka/roshanassignemt_ac:v1 .
+        docker pusj roshanthamalaka/roshanassignemt_ac:v1
+
+As the Container Image Repository I have chosen docker hub. "roshanthamalaka/roshanassignemt_ac" is the public docker Hub Repository.
+![alt text](image.png)
