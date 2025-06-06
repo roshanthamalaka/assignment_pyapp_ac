@@ -124,6 +124,7 @@ In the promethus official documentation it was not clear on how to publish metri
     https://betterstack.com/community/guides/monitoring/prometheus-python-metrics/#step-3-instrumenting-a-counter-metric 
 
 To Publish metrics added below block 
+
     @app.route('/metrics')
     def metrics():
         # """ Exposes application metrics in a Prometheus-compatible format. """
@@ -132,11 +133,13 @@ To Publish metrics added below block
 This Publish all the prometheus metrics. Only need to publish custom metrics therefore need to create registry and register the counters with custom registry.
 
 In the App You can see Below Code Block which specify Custom Registry 
+
         registry = CollectorRegistry()
 
     Documentation https://betterstack.com/community/guides/monitoring/prometheus-python-metrics/#step-1-setting-up-the-demo-project:~:text=If%20you%20want%20to%20disable%20these%20and%20expose%20only%20specific%20metrics%2C%20you%20need%20to%20create%20a%20custom%20registry%3A 
 
 Thats why Counter metrics defined like below. This will register counter with custom registry 
+
     counter_gdlf = Counter("Gandalf_total_requests","Total Number of Request to /gandalf uri",registry=registry,)
 
 Then Modified the metrics function with registry like below. Therefore it will publish those custom metrics
