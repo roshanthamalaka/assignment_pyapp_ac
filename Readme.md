@@ -1,6 +1,6 @@
 ## Overview of the Project
 
-This Repository Contains all the codes related Python Web Application its deployment components. In the repository it has several sub folders. Purpose of those sub folders are shown in the below table
+This Repository Contains all the codes related to Python Web Application its deployment components. In the repository it has several sub folders. Purpose of those sub folders are shown in the below table
 
 | Folder Name                             | Purpose                                                                                                                    |
 |----------------------------------------|----------------------------------------------------------------------------------------------------------------------------|
