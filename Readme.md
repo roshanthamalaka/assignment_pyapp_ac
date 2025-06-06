@@ -1,11 +1,11 @@
 ## Overview of the Project
 
-This Repository Contains all the codes related Python Web Application and  it is deployment components (infrastructure,configuration). In the repository it has several sub folders. Purpose of those sub folders are shown in the below table
+This Repository Contains all the codes related Python Web Application its deployment components. In the repository it has several sub folders. Purpose of those sub folders are shown in the below table
 
 | Folder Name                             | Purpose                                                                                                                    |
 |----------------------------------------|----------------------------------------------------------------------------------------------------------------------------|
 | Ansible_playbooks_promethus_configuration | This folder contains the playbook used to install and configure Prometheus on a Linux virtual machine (VM OS is Ubuntu )    |
-| Infrastrucuture                         | This folder contains Terraform scripts used to provision resources on Azure Cloud                                          |
+| Infrastructure                         | This folder contains Terraform scripts used to provision resources on Azure Cloud                                          |
 | K8Manifests                             | This folder contains the Kubernetes manifests to deploy deployments and services                                            |
 | static and templates                    | This folder contains static content (e.g., images) and templates (e.g., HTML) used by the Python web application           |
 
@@ -20,12 +20,12 @@ To create this App Flask Framework has been used. There are two popular framewor
 Refer below documentation understand how to create Python Web Application 
     https://medium.com/@dattu1993/creating-a-web-application-with-python-a-comprehensive-guide-for-beginners-db59df5867e4 
 
-To Understand Flaks its sub functions refer to flask documentation 
+To Understand Flask its sub functions refer to flask documentation 
     https://flask.palletsprojects.com/en/stable/quickstart/ 
 
-When flaks application is created by default it runs on port 5000 with accessible on localhost.
+When Flask application is created by default it runs on port 5000 and it is accessible on localhost.
 
-To use custom port and listen on all address (0.0.0.0) added below code block  as per below documentation
+To use custom port and listen on all addresses (0.0.0.0) added below code block  as per below documentation
 
     if __name__ == "__main__":
 
@@ -33,7 +33,7 @@ To use custom port and listen on all address (0.0.0.0) added below code block  a
 
     Documentation:  https://learn.microsoft.com/en-us/visualstudio/ide/quickstart-python?view=vs-2022  
 
-By adding this applications was exposed on custom port and able to run without flaks. (Issue python3)
+By adding this applications was exposed on custom port and able to run without Flask. (Issue python3)
 
 In the app.py it has commnents about each function usage for more informational purpose.
 
@@ -43,8 +43,8 @@ Basic functionality of Applications as follows
 
 1. When Access application on the Colombo URL it shows the Colombo Time 
 2. When Access gandalf URL it shows the image 
-3. When Application Loads Gives an weclome message 
-4. Access other URL gives error message of invalid path 
+3. When Application Loads, It shows a weclome message 
+4. Access other URL shows error message of invalid path 
 
 Once the logic has written for the above, we have containerized the application. 
 
@@ -52,12 +52,12 @@ Followed Below Documentations  which is specific to Python
     https://docs.docker.com/guides/python/develop/ 
     https://docs.docker.com/guides/python/containerize/
 
-I used manually create assests method. I get the Example Docker file from above and modified with respective to my need.
+I used manually create assets method. I get the Example Docker file from above and modified with respective to my need.
 
-When it comes to containerization need to specify dependencies in the requirements.txt file. In here specified packages which same as the version in local machine. So when the content is copied to the docker image and it starts installing the version same as my local machine. 
+When it comes to containerization need to specify dependencies in the requirements.txt file. In here specified packages which same as the version in local machine. So when the content is copied to the docker image and it starts installing the same version  as my local machine. 
 
 In Docker File below section install the dependencies.
-    # Installing Dependenices
+    # Installing Dependencies
     RUN pip3 install -r requirements.txt 
 
 To view Current Version of dependencies in my machine used below commands.
@@ -69,12 +69,12 @@ __Build the Docker Image__
 
 To Build the image use the below command.
         docker build -t roshanthamalaka/roshanassignemt_ac:v1 .
-        docker pusj roshanthamalaka/roshanassignemt_ac:v1
+        docker push roshanthamalaka/roshanassignemt_ac:v1
 
 As the Container Image Repository I have chosen docker hub. "roshanthamalaka/roshanassignemt_ac" is the public docker Hub Repository.
 ![alt text](image.png)
 
-__Problem Identified in the application During Containarization__
+__Problem Identified in the application During Containerization__
 
 When docker image was created. App was running but can't access externally. Reason because app was exposed like this
     if name == "main": 
@@ -86,15 +86,15 @@ Therefore chaged 127.0.0.1 to 0.0.0.0 so app will liste on all interfaces not ju
 For Get understanding of the prometheus referred to below documentation 
     https://betterstack.com/community/guides/monitoring/prometheus/
 
-Promethus scrap metric at interval by default on /metric endpoints 
+Prometheus scrape metric at interval by default on /metric endpoints 
 
-According to promethus official documentation depending on the language has different libaries available to create custom prometheus exporters. 
+According to Prometheus official documentation depending on the language has different libraries available to create custom prometheus exporters. 
     https://prometheus.io/docs/instrumenting/clientlibs/ 
 
-Since the application is python used below python libarary from the above. Python Library Documentation Below.
+Since the application is python used below python library from the above. Python Library Documentation Below.
     https://prometheus.github.io/client_python
 
-In above documentation under instrument section it shows that it publishes four type of metricses which are 
+In above documentation under instrument section it shows that it publishes four type of metrics which are 
 1. Counter
 2. Gauage
 3. Summary 
@@ -102,7 +102,7 @@ In above documentation under instrument section it shows that it publishes four 
 
 For the purpose of count the request to specific URL implemented count metric
 
-To use this need to install prometheus-client libary and import several components in that libarary 
+To use this need to install prometheus-client libary and import several components in that library 
 
 This also added to requirements.txt file 
 
@@ -117,9 +117,9 @@ Then each URL request increment the counter by one using inc. Refer below code s
 
 __Export Metrics from the Application__ 
 
-Once the metrics are the need to publish on /metrics path. So the prometheus node can scrap those metrics and visualize it graph format.
+Once the metrics are avaliable they need to publish on /metrics path. So the prometheus node can scrape those metrics and visualize it graph format.
 
-In the promethus official documentation it was not clear on how to publish metrics on /metrics path. Therefore reffered to below documentation. 
+In the Prometheus official documentation it was not clear on how to publish metrics on /metrics path. Therefore referred to below documentation. 
 
     https://betterstack.com/community/guides/monitoring/prometheus-python-metrics/#step-3-instrumenting-a-counter-metric 
 
@@ -152,9 +152,9 @@ Then Modified the metrics function with registry like below. Therefore it will p
 
 To host the Application Azure kubernetes Service has been utilized.  Manifest used to create kubernetes component (app_deployment.yml) available in the K8Manifest Folder with Description.
 
-In Summary deployment Kubernetes Deployment and LoadBalancer service. This will expose Application on static Public IP Address on Port 80. Refer below Screenshot taken from the application when running in Kurbernetes Cluster. 
+In Summary deployment Kubernetes Deployment and LoadBalancer service. This will expose Application on static Public IP Address on Port 80. Refer below Screenshot taken from the application when running in Kubernetes Cluster. 
 
-Showing Colombo Time wghen path /colombo
+Showing Colombo Time when path /colombo
 
 ![alt text](image-1.png)
 
@@ -162,11 +162,11 @@ Showing Gandalf Image When Path /gandalf
 
 ![alt text](image-2.png)
 
-Showing Promethus Exporter Metrics when accessing /metrics URL 
+Showing Prometheus Exporter Metrics when accessing /metrics URL 
 
 ![alt text](image-3.png)
 
-Promethus Node has been setup to Scrap those metrics from the application. Refer below Screenshot taken from the Promethus node scraping each metric
+Prometheus Node has been setup to scrape those metrics from the application. Refer below Screenshot taken from the Prometheus node scraping each metric
 
 Request to  Gandalf URL Visualize From Prometheus 
 
@@ -178,19 +178,19 @@ Request to Colombo URL Visualize From Prometheus
 
 ## Infrastructure Creation 
 
-To Create AKS Cluster, Promethus VM on Azure use Terraform as the infrastrucutrue as Code Tool. Terraform scripts available at the Infrastructure Folder.
+To Create AKS Cluster, Prometheus VM on Azure use Terraform as the infrastrucutrue as Code Tool. Terraform scripts available at the Infrastructure Folder.
 
  Description about the terraform script available in the Readme file available there 
 
-## Promethus Server Installation 
+## Prometheus Server Installation 
 
-Followed Below Documentation to identify Manual Installation methods of the Promethus on Server.
+Followed Below Documentation to identify Manual Installation methods of the Prometheus on Server.
 
     https://prometheus.io/docs/introduction/first_steps/
 
- Use Ansible to install and configure the prometheus server. Ansible Playbook availble in Ansible_playbooks_promethus_configuration folder.
+ Use Ansible to install and configure the prometheus server. Ansible Playbook available in Ansible_playbooks_promethus_configuration folder.
  Readme file in that folder has description about  installation and configuration
 
  ## About Deployment 
 
- Application , Infrastrucuture and the configuration all deployment done through local machine. In real world best to use CI/CD pipeline for application deployment, Terraform deployment and so on. In this case it was ommitted.
+ Application , Infrastructure and the configuration all deployment done through local machine. In real world best to use CI/CD pipeline for application deployment, Terraform deployment and so on. In this case it was ommitted. 
