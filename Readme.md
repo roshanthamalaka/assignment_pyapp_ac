@@ -148,5 +148,8 @@ Then Modified the metrics function with registry like below. Therefore it will p
     def metrics():
     return generate_latest(registry), 200, {'Content-Type': CONTENT_TYPE_LATEST}
 
+## Hosting the Application 
 
+To host the Application Azure kubernetes Service has been utilized.  Manifest used to create kubernetes component available in the K8Manifest Folder with Description.
 
+In Summary deployment Kubernetes Deployment and LoadBalancer service. This will expose Application on static Public IP Address on Port 80. Refer below Screenshot taken from the application when running in Kurbernetes Cluster. 
