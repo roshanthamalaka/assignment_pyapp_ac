@@ -1,4 +1,4 @@
-## Ansible Playbooks Provision the 
+## Ansible Playbooks Install and Configure the Promethus Server
 
 This Folder Contains the Ansible Scripts to Install and Configure Promethus server to Scrap metrics from the application
 
@@ -19,11 +19,11 @@ ___Ansible Script Reference__
 Purpose of the Playbooks as follows 
 
     install_promethus.yml  Install Promethus and Configure it as a service 
-    configure_promethus.yml Configure Promethus Server to scrap metrics
+    configure_promethus.yml Configure Promethus Server to scrape metrics from application
 
-Promethus does not have a package manager installation in summary following things needs to be done 
-1. Download the Binary from Promethus Site
-2. Extract it get Binary and Configuration file 
+Promethus does not have a package manager command for installation. In summary following things needs to be done for install it
+1. Download the tar file from Promethus Site
+2. Extract tar file , get prometheus excutable and Configuration file 
 3. Copy executable to the /usr/local/bin location creating folder called prometheus in the path
 4. Create the Service file , Start and Enable the service 
 
