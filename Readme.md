@@ -4,7 +4,7 @@ This Repository Contains all the codes related Python Web Application it is depl
 
 | Folder Name                             | Purpose                                                                                                                    |
 |----------------------------------------|----------------------------------------------------------------------------------------------------------------------------|
-| Ansible_playbooks_promethus_configuration | This folder contains the playbook used to install and configure Prometheus on a Linux virtual machine (Ubuntu assumed)    |
+| Ansible_playbooks_promethus_configuration | This folder contains the playbook used to install and configure Prometheus on a Linux virtual machine (VM OS is Ubuntu )    |
 | Infrastrucuture                         | This folder contains Terraform scripts used to provision resources on Azure Cloud                                          |
 | K8Manifests                             | This folder contains the Kubernetes manifests to deploy deployments and services                                            |
 | static and templates                    | This folder contains static content (e.g., images) and templates (e.g., HTML) used by the Python web application           |
@@ -190,3 +190,7 @@ Followed Below Documentation to identify Manual Installation methods of the Prom
 
  Use Ansible to install and configure the prometheus server. Ansible Playbook availble in Ansible_playbooks_promethus_configuration folder.
  Readme file in that folder has description about  installation and configuration
+
+ ## About Deployment 
+
+ Application , Infrastrucuture and the configuration all deployment done through local machine. In real world best to use CI/CD pipeline for application deployment, Terraform deployment and so on. In this case it was ommitted.
