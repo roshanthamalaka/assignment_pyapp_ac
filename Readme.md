@@ -26,8 +26,11 @@ https://flask.palletsprojects.com/en/stable/quickstart/
 When flaks application is created by default it runs on port 5000 with accessible on localhost.
 
 To use custom port and listen on all address (0.0.0.0) added below code block  as per below documentation
+
 if __name__ == "__main__":
+
     app.run('0.0.0.0', 8181)
-https://learn.microsoft.com/en-us/visualstudio/ide/quickstart-python?view=vs-2022 
+
+Documentation:  https://learn.microsoft.com/en-us/visualstudio/ide/quickstart-python?view=vs-2022  
 
 By adding this applications was exposed on custom port and able to run without flaks. (Issue python3)
