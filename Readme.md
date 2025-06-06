@@ -18,10 +18,10 @@ In the repository there is a python web application named as app.py.
 To create this App Flask Framework has been used. There are two popular frameworks for developing python WebApps which are Django and Flask. Since Flask is light weight Flask has been chosen to develop the application.
 
 Refer below documentation understand how to create Python Web Application 
-https://medium.com/@dattu1993/creating-a-web-application-with-python-a-comprehensive-guide-for-beginners-db59df5867e4 
+    https://medium.com/@dattu1993/creating-a-web-application-with-python-a-comprehensive-guide-for-beginners-db59df5867e4 
 
 To Understand Flaks its sub functions refer to flask documentation 
-https://flask.palletsprojects.com/en/stable/quickstart/ 
+    https://flask.palletsprojects.com/en/stable/quickstart/ 
 
 When flaks application is created by default it runs on port 5000 with accessible on localhost.
 
@@ -31,7 +31,7 @@ To use custom port and listen on all address (0.0.0.0) added below code block  a
 
         app.run('0.0.0.0', 8181)
 
-Documentation:  https://learn.microsoft.com/en-us/visualstudio/ide/quickstart-python?view=vs-2022  
+    Documentation:  https://learn.microsoft.com/en-us/visualstudio/ide/quickstart-python?view=vs-2022  
 
 By adding this applications was exposed on custom port and able to run without flaks. (Issue python3)
 
@@ -49,8 +49,8 @@ Basic functionality of Applications as follows
 Once the logic has written for the above, we have containerized the application. 
 
 Followed Below Documentations  which is specific to Python
-https://docs.docker.com/guides/python/develop/ 
-https://docs.docker.com/guides/python/containerize/
+    https://docs.docker.com/guides/python/develop/ 
+    https://docs.docker.com/guides/python/containerize/
 
 I used manually create assests method. I get the Example Docker file from above and modified with respective to my need.
 
@@ -80,6 +80,60 @@ When docker image was created. App was running but can't access externally. Reas
     if name == "main": 
         app.run('127.0.0.1', 8181)
 Therefore chaged 127.0.0.1 to 0.0.0.0 so app will liste on all interfaces not just loopback.
+
+## Adding Prometheus Exporter to the Application
+
+For Get understanding of the prometheus referred to below documentation 
+    https://betterstack.com/community/guides/monitoring/prometheus/
+
+Promethus scrap metric at interval by default on /metric endpoints 
+
+According to promethus official documentation depending on the language has different libaries available to create custom prometheus exporters. 
+    https://prometheus.io/docs/instrumenting/clientlibs/ 
+
+Since the application is python used below python libarary from the above. Python Library Documentation Below.
+    https://prometheus.github.io/client_python
+
+In above documentation under instrument section it shows that it publishes four type of metricses which are 
+1. Counter
+2. Gauage
+3. Summary 
+4. Histogram
+
+For the purpose of count the request to specific URL implemented count metric
+
+To use this need to install prometheus-client libary and import several components in that libarary 
+
+This also added to requirements.txt file 
+
+In the app.py we have specified counters like below 
+
+    counter_gdlf = Counter("Gandalf_requests","Total Number of Request to /gandalf uri",registry=registry,) # metric Name will be Gandalf_requests_total because adding prefix
+counter_clmb = Counter("Colombo_requests","Total Number of Request to /colombo uri",registry=registry,) 
+
+Then each URL request increment the counter by one using inc. Refer below code snippet taken from the application 
+
+    counter_gdlf.inc() # Increment Counter
+
+__Export Metrics from the Application__ 
+
+Once the metrics are the need to publish on /metrics path. So the prometheus node can scrap those metrics and visualize it graph format.
+
+In the promethus official documentation it was not clear on how to publish metrics on /metrics path. Therefore reffered to below documentation. 
+
+    https://betterstack.com/community/guides/monitoring/prometheus-python-metrics/#step-3-instrumenting-a-counter-metric 
+
+To Publish metrics added below block 
+    @app.route('/metrics')
+    def metrics():
+        # """ Exposes application metrics in a Prometheus-compatible format. """
+      return generate_latest(), 200, {'Content-Type': CONTENT_TYPE_LATEST}
+
+This Publish all the prometheus metrics. Only need to publish custom metrics therefore need to create registry and register the counters with custome registery.
+    Documentation https://betterstack.com/community/guides/monitoring/prometheus-python-metrics/#step-1-setting-up-the-demo-project:~:text=If%20you%20want%20to%20disable%20these%20and%20expose%20only%20specific%20metrics%2C%20you%20need%20to%20create%20a%20custom%20registry%3A 
+
+Thats why Counter metrics defined like below
+    counter_gdlf = Counter("Gandalf_total_requests","Total Number of Request to /gandalf uri",registry=registry,)
 
 
 
