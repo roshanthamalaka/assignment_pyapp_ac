@@ -60,12 +60,12 @@ In Docker File below section install the dependencies.
     # Installing Dependenices
     RUN pip3 install -r requirements.txt 
 
-To view Current Version of dependencies in my machine used below commands
+To view Current Version of dependencies in my machine used below commands.
 
     1. Flask Version: flask --version
     2. Pytz Version: pip3 show pytz
 
-___Build the Docker Image__
+__Build the Docker Image__
 
 To Build the image use the below command.
         docker build -t roshanthamalaka/roshanassignemt_ac:v1 .
@@ -73,3 +73,14 @@ To Build the image use the below command.
 
 As the Container Image Repository I have chosen docker hub. "roshanthamalaka/roshanassignemt_ac" is the public docker Hub Repository.
 ![alt text](image.png)
+
+__Problem Identified in the application During Containarization__
+
+When docker image was created. App was running but can't access externally. Reason because app was exposed like this
+    if name == "main": 
+        app.run('127.0.0.1', 8181)
+Therefore chaged 127.0.0.1 to 0.0.0.0 so app will liste on all interfaces not just loopback.
+
+
+
+
