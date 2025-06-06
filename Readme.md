@@ -155,20 +155,25 @@ To host the Application Azure kubernetes Service has been utilized.  Manifest us
 In Summary deployment Kubernetes Deployment and LoadBalancer service. This will expose Application on static Public IP Address on Port 80. Refer below Screenshot taken from the application when running in Kurbernetes Cluster. 
 
 Showing Colombo Time wghen path /colombo
+
 ![alt text](image-1.png)
 
 Showing Gandalf Image When Path /gandalf
+
 ![alt text](image-2.png)
 
 Showing Promethus Exporter Metrics when accessing /metrics URL 
+
 ![alt text](image-3.png)
 
 Promethus Node has been setup to Scrap those metrics from the application. Refer below Screenshot taken from the Promethus node scraping each metric
 
 Request to  Gandalf URL Visualize From Prometheus 
+
 ![alt text](image-4.png)
 
 Request to Colombo URL Visualize From Prometheus
+
 ![alt text](image-5.png)
 
 ## Infrastructure Creation 
