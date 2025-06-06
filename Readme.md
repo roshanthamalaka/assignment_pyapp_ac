@@ -150,6 +150,38 @@ Then Modified the metrics function with registry like below. Therefore it will p
 
 ## Hosting the Application 
 
-To host the Application Azure kubernetes Service has been utilized.  Manifest used to create kubernetes component available in the K8Manifest Folder with Description.
+To host the Application Azure kubernetes Service has been utilized.  Manifest used to create kubernetes component (app_deployment.yml) available in the K8Manifest Folder with Description.
 
 In Summary deployment Kubernetes Deployment and LoadBalancer service. This will expose Application on static Public IP Address on Port 80. Refer below Screenshot taken from the application when running in Kurbernetes Cluster. 
+
+Showing Colombo Time wghen path /colombo
+![alt text](image-1.png)
+
+Showing Gandalf Image When Path /gandalf
+![alt text](image-2.png)
+
+Showing Promethus Exporter Metrics when accessing /metrics URL 
+![alt text](image-3.png)
+
+Promethus Node has been setup to Scrap those metrics from the application. Refer below Screenshot taken from the Promethus node scraping each metric
+
+Request to  Gandalf URL Visualize From Prometheus 
+![alt text](image-4.png)
+
+Request to Colombo URL Visualize From Prometheus
+![alt text](image-5.png)
+
+## Infrastructure Creation 
+
+To Create AKS Cluster, Promethus VM on Azure use Terraform as the infrastrucutrue as Code Tool. Terraform scripts available at the Infrastructure Folder.
+
+ Description about the terraform script available in the Readme file available there 
+
+## Promethus Server Installation 
+
+Followed Below Documentation to identify Manual Installation methods of the Promethus on Server.
+
+    https://prometheus.io/docs/introduction/first_steps/
+
+ Use Ansible to install and configure the prometheus server. Ansible Playbook availble in Ansible_playbooks_promethus_configuration folder.
+ Readme file in that folder has description about  installation and configuration
