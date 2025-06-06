@@ -3,7 +3,7 @@ In the app_deployment.yml file contains deployment and service all in one manife
 
 It Deploys deployment with two replicas and Expose with Load Balancer Service 
 
-AKS Cluster has default Load Balancer. Using that Load Balancer Application was exposed on port 80 with Static IP. Before Documentation specifies that 
+AKS Cluster has default Load Balancer. Using that Load Balancer Application was exposed on port 80 with Static IP. Refer Below Documentation.
     https://learn.microsoft.com/en-us/azure/aks/load-balancer-standard 
 
 According Kubernetes Documentation if the Environemt Supports Cloud Load Balancer it provides External IP address. Refer below Docs
